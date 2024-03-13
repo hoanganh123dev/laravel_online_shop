@@ -146,9 +146,7 @@
                                 <div class="mb-3">
                                     <label for="category">Sub category</label>
                                     <select name="sub_category" id="sub_category" class="form-control">
-                                        <option value="">Mobile</option>
-                                        <option value="">Home Theater</option>
-                                        <option value="">Headphones</option>
+                                        <option value="">Select a Sub Category</option>
                                     </select>
                                 </div>
                             </div>
@@ -266,17 +264,37 @@
             });
         })
 
+        // $("#category").change(function() {
+        //     var category_id = $(this).val();
+        //     $.ajax({
+        //         url: "{{ route("product-subcategories.index") }}",
+        //         type: 'get',
+        //         data: {},
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             $("#sub_category").find("option").not(".first").remove();
+        //             $.each(response["subCategories"], function(key, item) {
+        //                 $("#sub_category").append(`<option value='${item.id}'>${item.name}</option>`)
+        //             });
+        //         },
+        //         error: function(){
+        //           console.log("Something Went Wrong");
+        //         }
+
+        //     });
+        // });
+
         $("#category").change(function() {
             var category_id = $(this).val();
             $.ajax({
                 url: "{{ route("product-subcategories.index") }}",
                 type: 'get',
-                data: {},
+                data: {category_id:category_id},
                 dataType: 'json',
                 success: function(response) {
                     $("#sub_category").find("option").not(".first").remove();
                     $.each(response["subCategories"], function(key, item) {
-                        $("#sub_category").append(`<option value='${item.id}' >${item.name}</option>`)
+                        $("#sub_category").append(`<option value='${item.id}'>${item.name}</option>`)
                     });
                 },
                 error: function(){

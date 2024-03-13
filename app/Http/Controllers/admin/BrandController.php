@@ -39,6 +39,8 @@ class BrandController extends Controller
             $brand->status = $request->status;
             $brand->save();
 
+            $request->session()->flash('success','Brand created successfully');
+
             return response()->json([
                 'status' => true,
                 'message' => 'Brand Added Successfully.'
@@ -53,37 +55,30 @@ class BrandController extends Controller
         
     }
 
-    public function delete(Request $request) {
+    
 
-    }
-
-    public function edit($id) {
-        // if (empty($brand)) {
-        //     $request->session()->flash('error', 'Record not found!');
-        //     return redirect()->route('brands.index');
-        // }
+    public function edit($id, Request $request) {
 
         $brand = Brand::find($id);
 
-        if(empty($brand)) {
-            Session::flash('error', 'Record not found!');
-            return Redirect::route('brands.index');
+        if (empty($brand)) {
+            $request->session()->flash('error', 'Record not found!');
+            return redirect()->route('brands.index');
         }
-
         $data['brand'] = $brand;
 
-        return view('admin.brands.edit', $data);
+        return view('admin.brands.edit')->with('brand', $brand);
     }
 
     public function update($id, Request $request) {
         $brand = Brand::find($id);
+
         if(empty($brand)) {
-            Session::flash('error', 'Record not found!');
+            $request->session()->flash('error', 'Brand not found');
             return response()->json([
                 'status' => false,
                 'notFound'  => true
             ]);
-            // return Redirect::route('brands.index');
         }
 
         $validator = Validator::make($request->all(),[
@@ -92,11 +87,12 @@ class BrandController extends Controller
         ]);
 
         if ($validator->passes()) {
-            $brand = new Brand();
             $brand->name = $request->name;
             $brand->slug = $request->slug;
             $brand->status = $request->status;
             $brand->save();
+
+            $request->session()->flash('success','Brand updated successfully!');
 
             return response()->json([
                 'status' => true,
@@ -109,5 +105,28 @@ class BrandController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function destroy($id, Request $request) {
+        
+        $brand= Brand::find($id);
+
+        if(empty($brand)) {
+            $request->session()->flash('error','Record not found');
+            return response([
+                'status' => false,
+                'notFound' => true
+            ]);
+            // return redirect()->route('sub-categories.index');
+        }
+
+        $brand->delete();
+
+        $request->session()->flash('success','Brand deleted successfully');
+
+        return response([
+            'status' => true,
+            'message' => 'Brand deleted successfully'
+        ]);
     }
 }

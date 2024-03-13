@@ -9,7 +9,7 @@
                     <h1>Edit Brand</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="brands.html" class="btn btn-primary">Back</a>
+                    <a href="{{ route('brands.index') }}" class="btn btn-primary">Back</a>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="pb-5 pt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="brands.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <a href="{{ route('brands.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
                 </div>
             </form>
         </div>
@@ -82,7 +82,7 @@ $("#editBrandForm").submit(function(event){
 
             if(response["status"] == true) {
 
-                // window.location.href="{{ route('brands.index')}}";
+                window.location.href="{{ route('brands.index')}}";
 
                 // $("#name").removeClass('is-invalid')
                 //     .siblings('p')

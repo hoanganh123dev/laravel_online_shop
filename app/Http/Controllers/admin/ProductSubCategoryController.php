@@ -18,13 +18,13 @@ class ProductSubCategoryController extends Controller
             ->get();
 
             return response()->json([
-                "status" => "success",
-                "data" => $subCategorires
+                "status" => true,
+                'subCategories' => $subCategorires
             ]);
 
         } else {
             return response()->json([
-                "status" => "true",
+                "status" => true,
                 'subCategories' => []
             ]);
         }
