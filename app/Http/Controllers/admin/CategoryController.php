@@ -26,8 +26,8 @@ class CategoryController extends Controller
         return View('admin.category.create');
     }
     public function store(Request $request){
-        $validator = Validator::make($request->all(),[
-            'name'=> 'required',
+            $validator = Validator::make($request->all(),[
+                'name'=> 'required',
             'slug'=> 'required|unique:categories',
         ]);
         
