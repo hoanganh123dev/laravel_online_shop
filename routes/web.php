@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
@@ -76,7 +76,9 @@ Route::group(['prefix'=> 'admin'], function () {
 
         //temp-image.create
         Route::post('/upload-temp-image', [TempImagesController::class, 'create'])->name('temp-images.create');
-        
+        Route::post('/product-images/update', [ProductImageController::class, 'update'])->name('product-images.update');
+        Route::delete('/product-images', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
+
         Route::get('/GetSlug', function(Request $request) {
             $slug = '';
             if(!empty($request->title)) {

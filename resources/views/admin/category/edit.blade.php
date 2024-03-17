@@ -50,8 +50,8 @@
                                 </div>
                             </div>
                             @if(!empty($category->image))
-                            <div>
-                                <img width="250" src="{{ asset('uploads/category/thumb/'.$category->image)}}" alt="">
+                            <div class ="col-md-6" >
+                                <img width="250" height="250" src="{{ asset('uploads/category/thumb/'.$category->image)}}" alt="">
                             </div>
                             @endif
                         </div>
