@@ -104,26 +104,26 @@
 
 @section('customJs')
 <script>
-    function deleteCategory(id){
+    function deleteCategory(id) {
         var url = '{{ route("categories.delete","ID") }}';
         var newUrl = url.replace("ID", id)
 
         if(confirm("Are you sure you want to delete")){
             $.ajax({
-            url: newUrl,
-            type: 'delete',
-            data: {},
-            dataType: 'json',
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }, 
-            success: function(response){
-                if(response["status"]) {
+                url: newUrl,
+                type: 'delete',
+                data: {},
+                dataType: 'json',
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }, 
+                success: function(response){
+                    if(response["status"]) {
 
-                    window.location.href="{{ route('categories.index')}}";
+                        window.location.href="{{ route('categories.index')}}";
+                    }
                 }
-            }
-        });
+            });
         }
     }
 </script>

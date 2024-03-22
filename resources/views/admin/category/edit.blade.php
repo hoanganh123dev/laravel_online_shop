@@ -51,7 +51,7 @@
                             </div>
                             @if(!empty($category->image))
                             <div class ="col-md-6" >
-                                <img width="250" height="250" src="{{ asset('uploads/category/thumb/'.$category->image)}}" alt="">
+                                <img style="margin: 30px 0px 30px 0px; width: 250px; height: 250px;" src="{{ asset('uploads/category/thumb/'.$category->image)}}" alt="">
                             </div>
                             @endif
                         </div>
@@ -59,11 +59,22 @@
                             <div class="mb-3">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control">
-                                    <option {{ ($category->status ==1) ? 'selected' : ''}} value="1">Active</option>
-                                    <option {{ ($category->status ==0) ? 'selected' : ''}} value="0">Block</option>
+                                    <option {{ ($category->status == 1) ? 'selected' : ''}} value="1">Active</option>
+                                    <option {{ ($category->status == 0) ? 'selected' : ''}} value="0">Block</option>
                                 </select>
                             </div>
-                        </div>								
+                        </div>	
+                        
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="showHome">Show on Home</label>
+                                <select name="showHome" id="showHome" class="form-control">
+                                    <option {{ ($category->showHome == 'Yes') ? 'selected' : ''}}  value="Yes">Yes</option>
+                                    <option {{ ($category->showHome == 'No') ? 'selected' : ''}}  value="No">No</option>
+                                </select>
+                            </div>
+                        </div>			
+                        
                     </div>
                 </div>							
             </div>
