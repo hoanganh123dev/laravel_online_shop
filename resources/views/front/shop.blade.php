@@ -111,7 +111,7 @@
                                 <div class="card product-card">
                                     <div class="product-image position-relative">
 
-                                        <a href="#" class="product-img">
+                                        <a href="{{ route('front.product', $product->slug) }}" class="product-img">
                                         @if (!empty($productImage->image))
                                             <img class="card-img-top" src="{{ asset('uploads/product/small/'.$productImage->image) }}" />
                                         @else
@@ -122,7 +122,7 @@
                                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
                                         <div class="product-action">
-                                            <a class="btn btn-dark" href="#">
+                                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
                                                 <i class="fa fa-shopping-cart"></i> Add To Cart
                                             </a>                            
                                         </div>
@@ -143,20 +143,7 @@
  
                     
                     <div class="col-md-12 pt-5">
-                        {{ $products->withQueryString()->links() }}
-                        {{-- <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav> --}}
+                        {{ $products->withQueryString()->links() }}                      
                     </div>
                 </div>
             </div>
